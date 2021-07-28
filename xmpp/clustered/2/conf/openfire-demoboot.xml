@@ -2,7 +2,7 @@
 <jive>
   <adminConsole>
       <port>9090</port>
-      <securePort>9091</securePort>
+      <securePort>9092</securePort>
   </adminConsole>
   <connectionProvider>
     <className>org.jivesoftware.database.EmbeddedConnectionProvider</className>
