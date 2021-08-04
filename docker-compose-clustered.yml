@@ -15,8 +15,6 @@ services:
     networks:
       openfire-clustered-net:
         ipv4_address: 172.60.0.11
-      openfire-alternative-net:
-        ipv4_address: 172.70.0.11
 
   lb:
     image: nginx:stable
@@ -118,9 +116,3 @@ networks:
       driver: default
       config:
         - subnet: 172.60.0.0/24
-  openfire-alternative-net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.70.0.0/24
