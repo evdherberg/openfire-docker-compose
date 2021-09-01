@@ -12,7 +12,7 @@ echo "About to be removed from cluster: $CONTAINER_TO_REMOVE"
 docker run -d --rm \
     --name "$CONTAINER_NAME" \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    gaiaadm/pumba netem --target 172.60.0.10 --target 172.60.0.20 --target 172.60.0.30 \
+    gaiaadm/pumba netem --tc-image gaiadocker/iproute2 --target 172.60.0.10 --target 172.60.0.20 --target 172.60.0.30 \
     --duration 24h \
     loss --percent 100 \
     "$CONTAINER_TO_REMOVE"

@@ -28,6 +28,14 @@ services:
       openfire-clustered-net:
         ipv4_address: 172.60.0.99
   
+#  hmc:
+#    image: hazelcast/management-center
+#    ports:
+#      - "9998:8080"
+#    networks:
+#      openfire-clustered-net:
+#        ipv4_address: 172.60.0.98
+
   xmpp1:
     image: "openfire:${OPENFIRE_TAG}"
     ports:
@@ -42,6 +50,7 @@ services:
       - ./_data/xmpp/clustered/1/conf:/var/lib/openfire/conf
       - ./_data/xmpp/clustered/1/plugins/hazelcast.jar:/var/lib/openfire/plugins/hazelcast.jar
       - ./_data/xmpp/clustered/1/plugins/inverse.jar:/var/lib/openfire/plugins/inverse.jar
+      - ./_data/xmpp/clustered/1/plugins/jsxc.jar:/var/lib/openfire/plugins/jsxc.jar
       - ./wait-for-it.sh:/wait-for-it.sh
     command: ["/wait-for-it.sh", "db:5432", "--", "/sbin/entrypoint.sh"]
     networks:
@@ -67,8 +76,9 @@ services:
       - "db"
     volumes:
       - ./_data/xmpp/clustered/2/conf:/var/lib/openfire/conf
-      - ./_data/xmpp/clustered/2/plugins/hazelcast.jar:/var/lib/openfire/plugins/hazelcast.jar
+      - ./_data/xmpp/clustered/1/plugins/hazelcast.jar:/var/lib/openfire/plugins/hazelcast.jar
       - ./_data/xmpp/clustered/2/plugins/inverse.jar:/var/lib/openfire/plugins/inverse.jar
+      - ./_data/xmpp/clustered/2/plugins/jsxc.jar:/var/lib/openfire/plugins/jsxc.jar
       - ./wait-for-it.sh:/wait-for-it.sh
     command: ["/wait-for-it.sh", "db:5432", "--", "/sbin/entrypoint.sh"]
     networks:
@@ -94,8 +104,9 @@ services:
       - "db"
     volumes:
       - ./_data/xmpp/clustered/3/conf:/var/lib/openfire/conf
-      - ./_data/xmpp/clustered/3/plugins/hazelcast.jar:/var/lib/openfire/plugins/hazelcast.jar
+      - ./_data/xmpp/clustered/1/plugins/hazelcast.jar:/var/lib/openfire/plugins/hazelcast.jar
       - ./_data/xmpp/clustered/3/plugins/inverse.jar:/var/lib/openfire/plugins/inverse.jar
+      - ./_data/xmpp/clustered/3/plugins/jsxc.jar:/var/lib/openfire/plugins/jsxc.jar
       - ./wait-for-it.sh:/wait-for-it.sh
     command: ["/wait-for-it.sh", "db:5432", "--", "/sbin/entrypoint.sh"]
     networks:
