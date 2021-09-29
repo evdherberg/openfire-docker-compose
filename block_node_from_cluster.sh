@@ -17,6 +17,4 @@ docker run -d --rm \
     loss --percent 100 \
     "$CONTAINER_TO_REMOVE"
 
-sleep 1s
-
 [[ $(docker ps --filter "name=$CONTAINER_NAME" --format '{{.Names}}') == "$CONTAINER_NAME" ]] || (echo "Failed to block traffic. The cluster likely needs restarting" && exit 1)
